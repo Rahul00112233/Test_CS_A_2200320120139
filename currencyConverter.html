@@ -54,7 +54,7 @@
 </head>
 <body>
   <header>
-    <h1>Header</h1>
+    <h1>Dashboard</h1>
   </header>
 
   <div class="content">
@@ -76,13 +76,15 @@
         <select id="toCurrency" onchange="convertCurrency()">
         </select>
 
-        <h3>Converted Amount: <span id="convertedAmount">0.00</span></h3>
+        <label>Converted:</label>
+        <input type="text" id="convertedAmount" readonly >
+
       </div>
     </div>
   </div>
 
   <footer>
-    <p>Footer</p>
+    <p>footer</p>
   </footer>
 
   <script>
@@ -116,7 +118,7 @@
       const toCurrency = document.getElementById("toCurrency").value;
 
       if (amount === "" || isNaN(amount)) {
-        document.getElementById("convertedAmount").textContent = "0.00";
+        document.getElementById("convertedAmount").value = "0.00";
         return;
       }
 
@@ -125,8 +127,9 @@
       const rate = data.rates[toCurrency];
       const convertedAmount = (amount * rate).toFixed(2);
 
-      document.getElementById("convertedAmount").textContent = `${convertedAmount} ${toCurrency}`;
+      document.getElementById("convertedAmount").value = `${convertedAmount}`;
     }
+
 
     window.onload = loadCurrencies;
   </script>
